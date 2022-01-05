@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "376476438526",
+    "project_id": "find2park",
+    "storage_bucket": "find2park.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376476438526:android:58982fcb5047fcc4733aaf",
+        "android_client_info": {
+          "package_name": "com.example.find2park"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376476438526-bf8e9fhpmulvpdeu32h6530v7ir87oks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC64g-x9j-s3_oYcTg4RukB1sPU1nrb7V4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376476438526-bf8e9fhpmulvpdeu32h6530v7ir87oks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
