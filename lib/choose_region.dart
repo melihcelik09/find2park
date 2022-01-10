@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:find2park/service/auth.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,100 @@ class _ChooseRegionState extends State<ChooseRegion> {
 // location[selectedRegion].toString()
 //map user ana database mapin icinde bolgeler iller ve ilceleri
 //mape illeri at
-
+  List parkingList = [
+    {
+      'image': 'https://picsum.photos/id/15/200/300',
+      'name': 'Otopark 1',
+      'occupancy': {
+        'free': (Random().nextInt(20) + 1),
+        'total': 20,
+      },
+      "address": '',
+      'status': 'Opened',
+      'isPaid': false,
+      'type': 'OnStreet',
+      'openingHours': {
+        {
+          "tuesday": "07:00 – 22:00",
+          "wednesday": "07:00 – 22:00",
+          "saturday": "07:00 – 22:00",
+          "monday": "07:00 – 22:00",
+          "sunday": "07:00 – 22:00",
+          "friday": "07:00 – 22:00",
+          "thursday": "07:00 – 22:00"
+        }
+      },
+    },
+    {
+      'image': 'https://picsum.photos/id/15/200/300',
+      'name': 'Otopark 2',
+      'occupancy': {
+        'free': (Random().nextInt(20) + 1),
+        'total': 20,
+      },
+      "address": '',
+      'status': 'Opened',
+      'isPaid': true,
+      'type': 'OnStreet',
+      'openingHours': {
+        {
+          "tuesday": "07:00 – 22:00",
+          "wednesday": "07:00 – 22:00",
+          "saturday": "07:00 – 22:00",
+          "monday": "07:00 – 22:00",
+          "sunday": "07:00 – 22:00",
+          "friday": "07:00 – 22:00",
+          "thursday": "07:00 – 22:00"
+        }
+      },
+    },
+    {
+      'image': 'https://picsum.photos/id/15/200/300',
+      'name': 'Otopark 3',
+      'occupancy': {
+        'free': (Random().nextInt(20) + 1),
+        'total': 20,
+      },
+      "address": '',
+      'status': 'Opened',
+      'isPaid': false,
+      'type': 'OnStreet',
+      'openingHours': {
+        {
+          "tuesday": "07:00 – 22:00",
+          "wednesday": "07:00 – 22:00",
+          "saturday": "07:00 – 22:00",
+          "monday": "07:00 – 22:00",
+          "sunday": "07:00 – 22:00",
+          "friday": "07:00 – 22:00",
+          "thursday": "07:00 – 22:00"
+        }
+      },
+    },
+    {
+      'image': 'https://picsum.photos/id/15/200/300',
+      'name': 'Otopark 4',
+      'occupancy': {
+        'free': (Random().nextInt(20) + 1),
+        'total': 20,
+      },
+      "address": '',
+      'status': 'Opened',
+      'isPaid': true,
+      'type': 'OnStreet',
+      'openingHours': {
+        {
+          "tuesday": "07:00 – 22:00",
+          "wednesday": "07:00 – 22:00",
+          "saturday": "07:00 – 22:00",
+          "monday": "07:00 – 22:00",
+          "sunday": "07:00 – 22:00",
+          "friday": "07:00 – 22:00",
+          "thursday": "07:00 – 22:00"
+        }
+      },
+    },
+  ];
   String? selectedRegion;
   String? selectedCity;
   var visibility = true;
@@ -141,6 +235,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
     });
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text('Find2Park'),
           backgroundColor: Colors.black,
           actions: isSignedIn != null
@@ -214,40 +309,24 @@ class _ChooseRegionState extends State<ChooseRegion> {
                     visible: visibility,
                     child: Card(
                       child: Column(
-                        children: [
-                          ListTile(
-                            leading: Icon(Icons.location_on),
-                            trailing: CircleAvatar(
-                                radius: 13,
-                                backgroundColor: Colors.black,
-                                child: Text('7')),
-                            title: Text(selected(selectedCity)),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.location_on),
-                            trailing: CircleAvatar(
-                                radius: 13,
-                                backgroundColor: Colors.black,
-                                child: Text('7')),
-                            title: Text(selected(selectedCity)),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.location_on),
-                            trailing: CircleAvatar(
-                                radius: 13,
-                                backgroundColor: Colors.black,
-                                child: Text('7')),
-                            title: Text(selected(selectedCity)),
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.location_on),
-                            trailing: CircleAvatar(
-                                radius: 13,
-                                backgroundColor: Colors.black,
-                                child: Text('7')),
-                            title: Text(selected(selectedCity)),
-                          ),
-                        ],
+                        children: parkingList
+                            .map(
+                              (e) => ListTile(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/reservation',
+                                      arguments: e);
+                                },
+                                leading: Icon(Icons.location_on),
+                                trailing: CircleAvatar(
+                                    radius: 13,
+                                    backgroundColor: Colors.black,
+                                    child: Text(
+                                        e['occupancy']['free'].toString())),
+                                title: Text(
+                                    selected(selectedCity) + " " + e['name']),
+                              ),
+                            )
+                            .toList(),
                       ),
                     ),
                   ),

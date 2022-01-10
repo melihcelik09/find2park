@@ -66,6 +66,9 @@ class _LoginState extends State<Login> {
                         bool isSignedIn = true;
                         return Navigator.pushNamed(context, '/chooseRegion',
                             arguments: isSignedIn);
+                        // return Navigator.of(context).pushReplacementNamed(
+                        //     '/chooseRegion',
+                        //     arguments: isSignedIn);
                       });
                     },
                     child: Text('Login')),

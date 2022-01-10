@@ -49,8 +49,8 @@ class _RegisterState extends State<Register> {
                   controller: _nameController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
+                    labelText: 'Name',
                     border: OutlineInputBorder(),
-                    hintText: 'Name',
                   ),
                 ),
                 SizedBox(height: 5),
@@ -60,7 +60,7 @@ class _RegisterState extends State<Register> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Surname',
+                    labelText: 'Surname',
                   ),
                 ),
                 SizedBox(height: 5),
@@ -69,7 +69,7 @@ class _RegisterState extends State<Register> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Email',
+                    labelText: 'Email',
                   ),
                 ),
                 SizedBox(height: 5),
@@ -78,7 +78,7 @@ class _RegisterState extends State<Register> {
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Phone Number',
+                    labelText: 'Phone Number',
                   ),
                 ),
                 SizedBox(height: 5),
@@ -87,7 +87,7 @@ class _RegisterState extends State<Register> {
                   controller: _licenceController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Licence Plate',
+                    labelText: 'Licence Plate',
                   ),
                 ),
                 SizedBox(height: 5),
