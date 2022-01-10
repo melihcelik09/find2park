@@ -44,14 +44,14 @@ class AuthService {
     return user.user;
   }
 
-  fillMap(String region, List<String> list) {
-    list.map((e) {
-      _firestore
-          .collection('map')
-          .doc(region)
-          .collection('province')
-          .doc(e)
-          .set({});
-    }).toList();
-  }
+  // fillMap(String region, List<String> list) {
+  //   list.map((e) {
+  //     _firestore
+  //         .collection('map')
+  //         .doc(region)
+  //         .collection('province')
+  //         .doc(e)
+  //         .set({});
+  //   }).toList();
+  // }
 }

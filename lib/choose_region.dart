@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:find2park/service/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -19,15 +21,119 @@ class _ChooseRegionState extends State<ChooseRegion> {
     'Karadeniz Bölgesi',
     'Marmara Bölgesi',
   ];
+  Map<String, dynamic> location = {
+    "Akdeniz Bölgesi": [
+      'Adana',
+      'Antalya',
+      'Burdur',
+      'Hatay',
+      'Isparta',
+      'Mersin',
+      'Kahramanmaraş',
+      'Osmaniye',
+    ],
+    "Doğu Anadolu Bölgesi": [
+      'Ağrı',
+      'Bingöl',
+      'Bitlis',
+      'Elazığ',
+      'Erzincan',
+      'Erzurum',
+      'Hakkari',
+      'Kars',
+      'Malatya',
+      'Muş',
+      'Tunceli',
+      'Van',
+      'Ardahan',
+      'Iğdır',
+    ],
+    'Ege Bölgesi': [
+      'Afyonkarahisar',
+      'Aydın',
+      'Denizli',
+      'İzmir',
+      'Kütahya',
+      'Manisa',
+      'Muğla',
+      'Uşak',
+    ],
+    'Güneydoğu Anadolu Bölgesi': [
+      'Adıyaman',
+      'Diyarbakır',
+      'Gaziantep',
+      'Mardin',
+      'Siirt',
+      'Şanlıurfa',
+      'Batman',
+      'Şırnak',
+      'Kilis',
+    ],
+    'İç Anadolu Bölgesi': [
+      'Ankara',
+      'Çankırı',
+      'Eskişehir',
+      'Kayseri',
+      'Kırşehir',
+      'Konya',
+      'Nevşehir',
+      'Niğde',
+      'Sivas',
+      'Yozgat',
+      'Aksaray',
+      'Karaman',
+      'Kırıkkale',
+    ],
+    'Karadeniz Bölgesi': [
+      'Amasya',
+      'Artvin',
+      'Bolu',
+      'Çorum',
+      'Giresun',
+      'Gümüşhane',
+      'Kastamonu',
+      'Ordu',
+      'Rize',
+      'Samsun',
+      'Sinop',
+      'Tokat',
+      'Trabzon',
+      'Zonguldak',
+      'Bayburt',
+      'Bartın',
+      'Karabük',
+      'Düzce',
+    ],
+    'Marmara Bölgesi': [
+      'Balıkesir',
+      'Bilecik',
+      'Bursa',
+      'Çanakkale',
+      'Edirne',
+      'İstanbul',
+      'Kırklareli',
+      'Kocaeli',
+      'Sakarya',
+      'Tekirdağ',
+      'Yalova',
+    ],
+  };
+// location[selectedRegion].toString()
 //map user ana database mapin icinde bolgeler iller ve ilceleri
+//mape illeri at
+
   String? selectedRegion;
+  String? selectedCity;
   var visibility = true;
 
   @override
   Widget build(BuildContext context) {
+    Map<String, List<String>> typedMap =
+        location.map((key, value) => MapEntry(key, value));
+
     Object? isSignedIn = ModalRoute.of(context)!.settings.arguments;
     setState(() {
-      if (selectedRegion == null) {
+      if (selectedRegion == null || selectedCity == null) {
         visibility = false;
       } else {
         visibility = true;
@@ -75,6 +181,19 @@ class _ChooseRegionState extends State<ChooseRegion> {
                     onChanged: (value) {
                       setState(() {
                         selectedRegion = value as String?;
+                        selectedCity = null;
+                      });
+                    }),
+                DropdownButton(
+                    hint: Text('Choose City'),
+                    value: selectedCity,
+                    items: typedMap[selectedRegion]
+                        ?.map((city) =>
+                            DropdownMenuItem(value: city, child: Text(city)))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedCity = value as String?;
                       });
                     }),
                 Image.network(
@@ -84,9 +203,9 @@ class _ChooseRegionState extends State<ChooseRegion> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                      selectedRegion == null
+                      selectedCity == null
                           ? ''
-                          : '$selectedRegion konumunundaki parkları görebilirsiniz',
+                          : '$selectedCity konumunundaki parkları görebilirsiniz',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 Container(
@@ -102,7 +221,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
                                 radius: 13,
                                 backgroundColor: Colors.black,
                                 child: Text('7')),
-                            title: Text(selected(selectedRegion)),
+                            title: Text(selected(selectedCity)),
                           ),
                           ListTile(
                             leading: Icon(Icons.location_on),
@@ -110,7 +229,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
                                 radius: 13,
                                 backgroundColor: Colors.black,
                                 child: Text('7')),
-                            title: Text(selected(selectedRegion)),
+                            title: Text(selected(selectedCity)),
                           ),
                           ListTile(
                             leading: Icon(Icons.location_on),
@@ -118,7 +237,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
                                 radius: 13,
                                 backgroundColor: Colors.black,
                                 child: Text('7')),
-                            title: Text(selected(selectedRegion)),
+                            title: Text(selected(selectedCity)),
                           ),
                           ListTile(
                             leading: Icon(Icons.location_on),
@@ -126,7 +245,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
                                 radius: 13,
                                 backgroundColor: Colors.black,
                                 child: Text('7')),
-                            title: Text(selected(selectedRegion)),
+                            title: Text(selected(selectedCity)),
                           ),
                         ],
                       ),
