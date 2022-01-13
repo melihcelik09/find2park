@@ -135,15 +135,13 @@ class _ChooseRegionState extends State<ChooseRegion> {
       'isPaid': false,
       'type': 'OnStreet',
       'openingHours': {
-        {
-          "tuesday": "07:00 – 22:00",
-          "wednesday": "07:00 – 22:00",
-          "saturday": "07:00 – 22:00",
-          "monday": "07:00 – 22:00",
-          "sunday": "07:00 – 22:00",
-          "friday": "07:00 – 22:00",
-          "thursday": "07:00 – 22:00"
-        }
+        "tuesday": "07:00 – 22:00",
+        "wednesday": "07:00 – 22:00",
+        "saturday": "07:00 – 22:00",
+        "monday": "07:00 – 22:00",
+        "sunday": "07:00 – 22:00",
+        "friday": "07:00 – 22:00",
+        "thursday": "07:00 – 22:00"
       },
     },
     {
@@ -158,15 +156,13 @@ class _ChooseRegionState extends State<ChooseRegion> {
       'isPaid': true,
       'type': 'OnStreet',
       'openingHours': {
-        {
-          "tuesday": "07:00 – 22:00",
-          "wednesday": "07:00 – 22:00",
-          "saturday": "07:00 – 22:00",
-          "monday": "07:00 – 22:00",
-          "sunday": "07:00 – 22:00",
-          "friday": "07:00 – 22:00",
-          "thursday": "07:00 – 22:00"
-        }
+        "tuesday": "07:00 – 22:00",
+        "wednesday": "07:00 – 22:00",
+        "saturday": "07:00 – 22:00",
+        "monday": "07:00 – 22:00",
+        "sunday": "07:00 – 22:00",
+        "friday": "07:00 – 22:00",
+        "thursday": "07:00 – 22:00"
       },
     },
     {
@@ -181,15 +177,13 @@ class _ChooseRegionState extends State<ChooseRegion> {
       'isPaid': false,
       'type': 'OnStreet',
       'openingHours': {
-        {
-          "tuesday": "07:00 – 22:00",
-          "wednesday": "07:00 – 22:00",
-          "saturday": "07:00 – 22:00",
-          "monday": "07:00 – 22:00",
-          "sunday": "07:00 – 22:00",
-          "friday": "07:00 – 22:00",
-          "thursday": "07:00 – 22:00"
-        }
+        "tuesday": "07:00 – 22:00",
+        "wednesday": "07:00 – 22:00",
+        "saturday": "07:00 – 22:00",
+        "monday": "07:00 – 22:00",
+        "sunday": "07:00 – 22:00",
+        "friday": "07:00 – 22:00",
+        "thursday": "07:00 – 22:00"
       },
     },
     {
@@ -204,15 +198,13 @@ class _ChooseRegionState extends State<ChooseRegion> {
       'isPaid': true,
       'type': 'OnStreet',
       'openingHours': {
-        {
-          "tuesday": "07:00 – 22:00",
-          "wednesday": "07:00 – 22:00",
-          "saturday": "07:00 – 22:00",
-          "monday": "07:00 – 22:00",
-          "sunday": "07:00 – 22:00",
-          "friday": "07:00 – 22:00",
-          "thursday": "07:00 – 22:00"
-        }
+        "tuesday": "07:00 – 22:00",
+        "wednesday": "07:00 – 22:00",
+        "saturday": "07:00 – 22:00",
+        "monday": "07:00 – 22:00",
+        "sunday": "07:00 – 22:00",
+        "friday": "07:00 – 22:00",
+        "thursday": "07:00 – 22:00"
       },
     },
   ];
@@ -264,48 +256,47 @@ class _ChooseRegionState extends State<ChooseRegion> {
         body: Center(
           child: Padding(
             padding: EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                DropdownButton(
-                    hint: Text('Choose Region'),
-                    value: selectedRegion,
-                    items: regions.map((regions) {
-                      return DropdownMenuItem(
-                          value: regions, child: Text(regions));
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedRegion = value as String?;
-                        selectedCity = null;
-                      });
-                    }),
-                DropdownButton(
-                    hint: Text('Choose City'),
-                    value: selectedCity,
-                    items: typedMap[selectedRegion]
-                        ?.map((city) =>
-                            DropdownMenuItem(value: city, child: Text(city)))
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedCity = value as String?;
-                      });
-                    }),
-                Image.network(
-                  'https://www.webtekno.com/images/editor/default/0001/35/d428e05b1a77edb88bbc1d88ad1bc79de49cf88f.png',
-                  fit: BoxFit.cover,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      selectedCity == null
-                          ? ''
-                          : '$selectedCity konumunundaki parkları görebilirsiniz',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                  child: Visibility(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  DropdownButton(
+                      hint: Text('Choose Region'),
+                      value: selectedRegion,
+                      items: regions.map((regions) {
+                        return DropdownMenuItem(
+                            value: regions, child: Text(regions));
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedRegion = value as String?;
+                          selectedCity = null;
+                        });
+                      }),
+                  DropdownButton(
+                      hint: Text('Choose City'),
+                      value: selectedCity,
+                      items: typedMap[selectedRegion]
+                          ?.map((city) =>
+                              DropdownMenuItem(value: city, child: Text(city)))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCity = value as String?;
+                        });
+                      }),
+                  Image.network(
+                    'https://www.webtekno.com/images/editor/default/0001/35/d428e05b1a77edb88bbc1d88ad1bc79de49cf88f.png',
+                    fit: BoxFit.cover,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        selectedCity == null
+                            ? ''
+                            : '$selectedCity konumunundaki parkları görebilirsiniz',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                  Visibility(
                     visible: visibility,
                     child: Card(
                       child: Column(
@@ -329,9 +320,9 @@ class _ChooseRegionState extends State<ChooseRegion> {
                             .toList(),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ));
