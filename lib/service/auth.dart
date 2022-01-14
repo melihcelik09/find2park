@@ -8,7 +8,34 @@ class AuthService {
   Future<User?> login(String email, String password) async {
     var user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
+
     return user.user;
+  }
+
+  Future<User?> reserve(
+      String parkingAreaName,
+      String reserveDay,
+      String reserveDate,
+      String reserveTime,
+      String type,
+      bool priceType) async {
+    var user = _auth.currentUser!;
+    await _firestore
+        .collection('reservation')
+        .doc(user.uid)
+        .set({
+          'reserved': {
+            'name': parkingAreaName,
+            'day': reserveDay,
+            'date': reserveDate,
+            'time': reserveTime,
+            'type': type,
+            'isPaid': priceType,
+          }
+        })
+        .then((value) => print('Reservation added'))
+        .catchError((error) => print("Failed to add reservation: $error"));
+    return user;
   }
 
   logout() async {

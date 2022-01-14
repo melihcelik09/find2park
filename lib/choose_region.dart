@@ -1,8 +1,8 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:find2park/service/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ChooseRegion extends StatefulWidget {
   ChooseRegion({Key? key}) : super(key: key);
@@ -238,6 +238,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
                       _authService.logout().then((value) {
                         setState(() {
                           isSignedIn = false;
+                          EasyLoading.showToast('Logged out');
                           Navigator.pushNamed(context, '/chooseRegion');
                         });
                       });
@@ -304,8 +305,10 @@ class _ChooseRegionState extends State<ChooseRegion> {
                             .map(
                               (e) => ListTile(
                                 onTap: () {
-                                  Navigator.pushNamed(context, '/reservation',
-                                      arguments: e);
+                                  if (isSignedIn == true) {
+                                    Navigator.pushNamed(context, '/reservation',
+                                        arguments: e);
+                                  }
                                 },
                                 leading: Icon(Icons.location_on),
                                 trailing: CircleAvatar(

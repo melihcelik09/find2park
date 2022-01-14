@@ -1,5 +1,6 @@
 import 'package:find2park/service/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class Register extends StatefulWidget {
   Register({Key? key}) : super(key: key);
@@ -146,6 +147,7 @@ class _RegisterState extends State<Register> {
                               selectedRegion.toString(),
                               selectedGender![0].toString())
                           .then((value) {
+                        EasyLoading.showToast('Register Success');
                         return Navigator.pushNamed(context, '/login');
                       });
                     },

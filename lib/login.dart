@@ -1,5 +1,6 @@
 import 'package:find2park/service/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -63,6 +64,7 @@ class _LoginState extends State<Login> {
                           .login(
                               _emailController.text, _passwordController.text)
                           .then((value) {
+                        EasyLoading.showToast('Login Success');
                         bool isSignedIn = true;
                         return Navigator.pushNamed(context, '/chooseRegion',
                             arguments: isSignedIn);
